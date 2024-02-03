@@ -1,0 +1,6 @@
+su jenkins
+ssh-keygen
+copy .pub key into git
+Go to jenkins credentials and select ssh username with private key
+copy private key from jenkins user and paste into the private key
+Save it
