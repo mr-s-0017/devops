@@ -1,4 +1,4 @@
-#!/bin/bashs
+#!/bin/bash
 sudo usermod -aG docker $USER
 docker pull docker.bintray.io/jfrog/artifactory-oss:latest
 sudo mkdir -p /jfrog/artifactory

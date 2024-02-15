@@ -1,0 +1,19 @@
+#Master Slave Configuration
+1. Launch an Instance and Enable inbound port 8080, 34635
+2. Go to manage jenkins on master node
+3. Click on Node > New Nodes button
+4. Enter Name, Description, Remote root directory as /otp/
+5. Select Launch agent by connecting it to the controller in Launch Method
+6. Custom WorkDir path as /opt/
+7. Save 
+8. Then Go the node by clicking on the node Name
+9. Copy the command as shown in example
+    curl -sO http://13.233.68.9:8080/jnlpJars/agent.jar
+    java -jar agent.jar -jnlpUrl http://13.233.68.9:8080/computer/worker2/jenkins-agent.jnlp -secret 9ee10f935641f9c3e636acf1999211bf85d7e1bae8db0f4b89ca48c0217197c0 -workDir "/opt/"
+10. Go to slave server and install Java
+    sudo apt update -y
+    sudo apt upgrade -y 
+    sudo apt install openjdk-17-jre -y
+11. Switch to root user and go to Dir /opt/
+12. Run the above copied command
+13. Now above node will be added to the Master

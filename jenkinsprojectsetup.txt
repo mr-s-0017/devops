@@ -1,6 +1,40 @@
-su jenkins
-ssh-keygen
+# Project access from SCM using ssh key 
+sudo su jenkins
+ssh-keygen or ssh-keygen -f ~/.ssh/FILENAME
 copy .pub key into git
 Go to jenkins credentials and select ssh username with private key
 copy private key from jenkins user and paste into the private key
 Save it
+
+#Sonar Qube
+1. Run sonarqube.sh to start docker container
+2. Enable 9000 port for the sonarqube
+3. Login to sonarqube and create a desired project and generate a token for it
+4. Create required Quality profiles and Gates
+5. Go to Jenkins & Install the plugins listed below
+    Sonar Gerrit
+    SonarQube Scanner
+    SonarQube Generic Coverage
+    Sonar Quality Gates
+    Quality Gates
+6. Go to Manage Jenkins > tools
+7. Scroll down to SonarQube Scanner installations
+    Give it a name as sonar-Scanner
+    Select Install automatically and the required version
+8. Save
+9. Go to credentials and save the token 
+10. Go to System and under SonarQube installations provide the name, Give the URL for sonarqube and select the credentials created in the above step.
+11. Use the sample jenkinsfile to make your own, It must be working
+
+
+#Jfrog
+1. Run Jfrog.sh to run a desired container
+2. Enable port 8081 and 8082
+3. Go to browser and enter the URL with port 8081
+4. Create the desired credentials
+5. Login to Jfrog and Click on the username on top right, Click on New Permissions
+6. On the left hand side click on User management
+7. Click on Access Tokens and generate a token for desired user
+8. Save the token in Credentials
+8. Use curl -X PUT -H 'Authorization: Bearer {token} -T cicd${BUILD_NUMBER}.tar.gz http://localhost:8082/artifactory/example-repo-local/ to upload 
+9. Use curl -X GET -H 'Authorization: Bearer {token} http://localhost:8082/artifactory/example-repo-local/ to download
